@@ -31,16 +31,18 @@ class MainTableViewController: UITableViewController, RainbowColorSource {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SampleCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SampleCell", for: indexPath)
 
         switch indexPath.row {
         case 0:
@@ -54,16 +56,17 @@ class MainTableViewController: UITableViewController, RainbowColorSource {
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.row {
-        case 0:
-            performSegueWithIdentifier("PushColorVC", sender: self)
-        case 1:
-            performSegueWithIdentifier("PushTransparentVC", sender: self)
-        default:
-            break
-        }
-    }
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		switch indexPath.row {
+		case 0:
+			performSegue(withIdentifier: "PushColorVC", sender: self)
+		case 1:
+			performSegue(withIdentifier: "PushTransparentVC", sender: self)
+		default:
+			break
+		}
+	}
+
 
     // MARK: - RainbowColorSource
     func navigationBarInColor() -> UIColor {
